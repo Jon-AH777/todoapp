@@ -27,7 +27,7 @@ const TodoList = ({
               <Input
                 value={editTodoText}
                 onChange={(e) => setEditTodoText(e.target.value)}
-                className="flex-1 mr-2"
+                className="flex-1"
               />
             ) : (
               <div className="flex items-center gap-4">
@@ -60,14 +60,14 @@ const TodoList = ({
             {editTodoId === todo.id ? (
               <Button
                 onClick={() => updateTodo(todo.id)}
-                className="bg-green-500 text-white px-2 py-1 rounded"
+                className="bg-yellow-500 text-white px-2 py-1 rounded"
               >
                 Update
               </Button>
             ) : (
               <Button
                 onClick={() => startEditTodo(todo)}
-                className="bg-blue-500 text-white px-2 py-1 rounded"
+                className="bg-blue-600 text-white px-2 py-1 rounded"
               >
                 Edit
               </Button>

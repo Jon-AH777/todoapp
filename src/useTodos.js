@@ -9,40 +9,42 @@ const useTodos = (key, initialValue) => {
 
   const addTodo = () => {
     if (newTodo.trim() !== "") {
-      const newTodoItem = { id: Date.now(), text: newTodo, completed: false };
-      const updatedTodos = [...todos, newTodoItem];
+      // if condition checks if newTodo input is empty or not
+      const newTodoItem = { id: Date.now(), text: newTodo, completed: false }; //creates a new todo object with id, text, completed status
+      const updatedTodos = [...todos, newTodoItem]; //updates the todos state with new array and creates a new array with existing todos
       setTodos(updatedTodos);
-      setNewTodo("");
+      setNewTodo(""); // clears the newTodo inputfield
     }
   };
 
   const deleteTodo = (id) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
+    setTodos(todos.filter((todo) => todo.id !== id)); // deletes todo items matching to its id
   };
 
   const startEditTodo = (todo) => {
-    setEditTodoId(todo.id);
-    setEditTodoText(todo.text);
+    // prepares the todo item to be edited
+    setEditTodoId(todo.id); // sets the ediTooId state id to be edited
+    setEditTodoText(todo.text); //same for text
   };
 
   const updateTodo = (id) => {
     const updatedTodos = todos.map((todo) =>
       todo.id === id ? { ...todo, text: editTodoText } : todo
-    );
+    ); // creates a new object by mapping through each todo item in the existing todos array, if it matches, it creates new todo object with updated text from editTodoText
     setTodos(updatedTodos);
     setEditTodoId(null);
-    setEditTodoText("");
+    setEditTodoText(""); // resets editTooId and editTodoText to its intial value
   };
   const toggleTodoCompletion = (id) => {
     const updatedTodos = todos.map((todo) =>
       todo.id === id ? { ...todo, completed: !todo.completed } : todo
-    );
+    ); // similar like updateTodo except it toggles the status of todo item
     setTodos(updatedTodos);
   };
 
   useEffect(() => {
     localStorage.setItem(key, JSON.stringify(todos));
-  }, [key, todos]);
+  }, [key, todos]); // stores updated todo list in localstorage and runs whenever key & todos state changes
 
   return {
     todos,
