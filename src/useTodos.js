@@ -20,7 +20,7 @@ const useTodos = (key, initialValue) => {
   useEffect(() => {
     const interval = setInterval(() => {
       addTodo("new todos");
-    }, 5000);
+    }, 50000);
 
     return () => clearInterval(interval);
   }, [setTodos]);
