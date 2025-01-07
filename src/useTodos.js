@@ -7,15 +7,23 @@ const useTodos = (key, initialValue) => {
   const [editTodoId, setEditTodoId] = useState(null);
   const [editTodoText, setEditTodoText] = useState("");
 
-  const addTodo = () => {
-    if (newTodo.trim() !== "") {
+  const addTodo = (text) => {
+    if (text.trim() !== "") {
       // if condition checks if newTodo input is empty or not
-      const newTodoItem = { id: Date.now(), text: newTodo, completed: false }; //creates a new todo object with id, text, completed status
+      const newTodoItem = { id: Date.now(), text, completed: false }; //creates a new todo object with id, text, completed status
       const updatedTodos = [...todos, newTodoItem]; //updates the todos state with new array and creates a new array with existing todos
       setTodos(updatedTodos);
-      setNewTodo(""); // clears the newTodo inputfield
+      /* setNewTodo(""); */ // clears the newTodo inputfield
     }
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      addTodo("new todos");
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [todos]);
 
   const deleteTodo = (id) => {
     setTodos(todos.filter((todo) => todo.id !== id)); // deletes todo items matching to its id
