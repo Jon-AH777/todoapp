@@ -33,7 +33,7 @@ const Todo = () => {
           placeholder="Add a new todo"
           onChange={(e) => setNewTodo(e.target.value)}
         />
-        <Button onClick={addTodo}>Add Todo</Button>
+        <Button onClick={() => addTodo(newTodo)}>Add Todo</Button>
       </div>
       {/* TODO LIST */}
       <div>

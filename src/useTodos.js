@@ -13,7 +13,7 @@ const useTodos = (key, initialValue) => {
       const newTodoItem = { id: Date.now(), text, completed: false }; //creates a new todo object with id, text, completed status
       const updatedTodos = [...todos, newTodoItem]; //updates the todos state with new array and creates a new array with existing todos
       setTodos(updatedTodos);
-      /* setNewTodo(""); */ // clears the newTodo inputfield
+      setNewTodo(""); // clears the newTodo inputfield
     }
   };
 
@@ -23,7 +23,7 @@ const useTodos = (key, initialValue) => {
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [todos]);
+  }, [setTodos]);
 
   const deleteTodo = (id) => {
     setTodos(todos.filter((todo) => todo.id !== id)); // deletes todo items matching to its id
